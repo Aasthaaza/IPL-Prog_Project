@@ -1,41 +1,42 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-
 @Component({
     selector: 'app-teamcreate',
     templateUrl: './teamcreate.component.html',
     styleUrls: ['./teamcreate.component.scss']
 })
-export class TeamCreateComponent implements OnInit {
-    teamForm!: FormGroup;
+
+export class TeamCreateComponent implements OnInit{
+    teamForm! : FormGroup;
     successMessage: string | null = null;
     errorMessage: string | null = null;
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private fb: FormBuilder){}
 
-    ngOnInit(): void {
-        this.teamForm = this.formBuilder.group({
+    ngOnInit(): void{
+        this.teamForm = this.fb.group({
             teamId: [null, [Validators.required, Validators.min(1)]],
             teamName: ['', [Validators.required, Validators.minLength(2)]],
-            location: ['', [Validators.required]],
+            location:['',[Validators.required]],
             ownerName: ['', [Validators.required, Validators.minLength(2)]],
-            establishmentYear: [null, [Validators.required]]
+            establishmentYear:[null, [Validators.required]]
         });
     }
-    onSubmit(): void {
-        if (this.teamForm.valid) {
+
+    onSubmit(): void{
+        if(this.teamForm.valid){
             this.successMessage = 'Team has been successfully created!';
-            this.errorMessage = null;
+            this.errorMessage= null;
             console.log('Team Created: ', this.teamForm.value);
             this.resetForm();
-        } else {
+        }else{
             this.errorMessage = 'Please fill out all required fields correctly.';
             this.successMessage = null;
         }
     }
 
-    resetForm(): void {
+    resetForm(): void{
         this.teamForm.reset({
             teamId: null,
             teamName: '',
