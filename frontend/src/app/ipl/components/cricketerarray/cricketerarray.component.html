@@ -5,9 +5,9 @@
         {{ showCricketers ? 'Hide' : 'Show' }} Cricketers
     </button>
 
-    <div *ngFor="showCricketers">
+    <div *ngIf="showCricketers">
         <ul>
-            <li *ngFor="let cricketer of cricketer">
+            <li *ngFor="let cricketer of cricketers">
                 <h3>{{ cricketer.cricketerName }} ({{ cricketer.age }} years old)</h3>
                 <p>Nationality: {{ cricketer.nationality }}</p>
                 <p>Role: {{ cricketer.role }}</p>
@@ -19,7 +19,7 @@
         </ul>
     </div>
 
-    <div *ngIf="characters.length === 0">
+    <div *ngIf="cricketers.length === 0">
         <p>No cricketers available to display</p>
     </div>
 </div>

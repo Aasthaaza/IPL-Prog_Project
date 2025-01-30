@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+
 @Component({
     selector: 'app-teamcreate',
     templateUrl: './teamcreate.component.html',
@@ -22,8 +23,19 @@ export class TeamCreateComponent implements OnInit {
             establishmentYear: [null, [Validators.required]]
         });
     }
-
     onSubmit(): void {
+        if (this.teamForm.valid) {
+            this.successMessage = 'Team has been successfully created!';
+            this.errorMessage = null;
+            console.log('Team Created: ', this.teamForm.value);
+            this.resetForm();
+        } else {
+            this.errorMessage = 'Please fill out all required fields correctly.';
+            this.successMessage = null;
+        }
+    }
+
+    resetForm(): void {
         this.teamForm.reset({
             teamId: null,
             teamName: '',
