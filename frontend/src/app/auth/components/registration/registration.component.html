@@ -160,7 +160,7 @@
 
                       <ng-container>
                           <div *ngIf="successMessage" class="success">
-                              <p>{{ successMessage }}</p>
+                              <p>{{ successMessage | json}}</p>
                           </div>
                           <div *ngIf="errorMessage" class="error">
                               <p>{{ errorMessage | json }}</p>
